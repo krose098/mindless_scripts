@@ -5,11 +5,9 @@ import click
 @click.command()
 @click.argument("ms", type=Path)
 def main(ms):
-	
 	flagdata(
 		vis=ms, 
 		mode="tfcrop",
-		
 		)
 	pass
 
