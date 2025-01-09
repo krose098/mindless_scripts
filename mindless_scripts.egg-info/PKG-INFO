@@ -1,0 +1,9 @@
+Metadata-Version: 2.2
+Name: mindless-scripts
+Version: 0.1.0
+Summary: Add your description here
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: astropy>=7.0.0
+Requires-Dist: click>=8.1.8
+Requires-Dist: pandas>=2.2.3

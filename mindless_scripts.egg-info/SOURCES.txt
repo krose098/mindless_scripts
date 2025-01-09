@@ -1,0 +1,13 @@
+README.md
+pyproject.toml
+mindless_scripts.egg-info/PKG-INFO
+mindless_scripts.egg-info/SOURCES.txt
+mindless_scripts.egg-info/dependency_links.txt
+mindless_scripts.egg-info/entry_points.txt
+mindless_scripts.egg-info/requires.txt
+mindless_scripts.egg-info/top_level.txt
+mindless_scripts/astro_tools/flume.py
+mindless_scripts/astro_tools/separation.py
+mindless_scripts/astro_tools/unicoord.py
+mindless_scripts/reduction_tools/flag.py
+mindless_scripts/writing_tools/atel_table.py

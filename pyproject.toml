@@ -1,0 +1,22 @@
+[project]
+name = "mindless-scripts"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "astropy>=7.0.0",
+    "click>=8.1.8",
+    "pandas>=2.2.3",
+]
+
+[tool.uv]
+package = true
+
+
+[project.scripts]
+ms-flag = "mindless_scripts.reduction_tools.flag:main"
+ms-atel = "mindless_scripts.writing_tools.atel_table:main"
+ms-flume = "mindless_scripts.astro_tools.flume:main"
+ms-sep = "mindless_scripts.astro_tools.separation:main"
+ms-coord = "mindless_scripts.astro_tools.unicoord:main"
