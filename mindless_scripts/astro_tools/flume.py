@@ -28,13 +28,8 @@ def main(flux,dist,bandwidth,galactic,specific):
         distance = dist * u.Mpc
     else:
         distance = dist * u.pc
-    # Convert flux to CGS units (erg/s/cm^2/Hz)
-    flux_cgs = flux.to(u.erg / (u.s * u.cm**2 * u.Hz))
     
-    # Convert distance to cm
-    distance_cm = distance.to(u.cm)
-    
-    luminosity_per_Hz = (4 * np.pi * distance_cm**2 * flux_cgs).to(u.erg / u.s / u.Hz)
+    luminosity_per_Hz = (4 * np.pi * distance**2 * flux).to(u.erg / u.s / u.Hz)
     print(f"Luminosity per Hz: {luminosity_per_Hz:.3e}")
 
     if specific == False:
