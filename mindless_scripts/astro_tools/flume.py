@@ -1,5 +1,4 @@
 from astropy import units as u
-from astropy.constants import c
 import numpy as np
 import click
  

@@ -4,3 +4,4 @@ ms-coord = mindless_scripts.astro_tools.unicoord:main
 ms-flag = mindless_scripts.reduction_tools.flag:main
 ms-flume = mindless_scripts.astro_tools.flume:main
 ms-sep = mindless_scripts.astro_tools.separation:main
+ms-tb = mindless_scripts.astro_tools.bright_temp:main
