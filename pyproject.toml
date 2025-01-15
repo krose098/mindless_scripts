@@ -7,7 +7,9 @@ requires-python = ">=3.11"
 dependencies = [
     "astropy>=7.0.0",
     "click>=8.1.8",
+    "matplotlib>=3.10.0",
     "pandas>=2.2.3",
+    "scipy>=1.15.1",
 ]
 
 [tool.uv]
@@ -21,3 +23,5 @@ ms-flume = "mindless_scripts.astro_tools.flume:main"
 ms-sep = "mindless_scripts.astro_tools.separation:main"
 ms-coord = "mindless_scripts.astro_tools.unicoord:main"
 ms-tb = "mindless_scripts.astro_tools.bright_temp:main"
+ms-pu-time = "mindless_scripts.astro_tools.pulse_timing:main"
+ms-ptsd = "mindless_scripts.astro_tools.process_time_series:main"
