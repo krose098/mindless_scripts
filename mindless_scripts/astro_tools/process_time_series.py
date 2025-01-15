@@ -169,7 +169,7 @@ def peak_finder(df,thresh):
     print("Date [MJD]| Δt [hr] | Flux Density [mJy/beam]|")
     print(46*"-")
     for idx, peak in enumerate(peaks):
-        print("{:.3f} | {:.3f}   | {:.3f} +/- {:.3f}\t     |".format(t_raw[idx],t[peak], x[peak], x_err[peak]))
+        print("{:.3f} | {:.3f}   | {:.3f} +/- {:.3f}\t     |".format(t_raw[peak],t[peak], x[peak], x_err[peak]))
     print(46*"=")
     print("with a median peak flux of {:.3f} +/- {:.3f} mJy/beam".format(x[peaks].median(),x_err[peaks].median()))
     print(46*"*")
