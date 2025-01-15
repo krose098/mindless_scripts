@@ -59,7 +59,6 @@ def process_astro_data(csv, observatory_name, format='isot', coords=None,galacti
     try:
         if pd.api.types.is_datetime64_any_dtype(df[time_col]):
             print("Detected pandas datetime format in time column")
-            # Convert pandas datetime series to numpy array of datetime64
             datetime_array = df[time_col].values
             times = Time(datetime_array, format='datetime64', scale='utc',
                         location=observatory_location)
@@ -132,8 +131,6 @@ def peak_finder(df,thresh):
     tmin=t.min()
     tmax=t.max()
     peak_thresh = thresh*x.std()
-    n=tmax/len(t)
-
     peaks, _ = find_peaks(x, height=1.0*peak_thresh)
     fwhm_width, fwhm_height, fwhm_left, fwhm_right  = peak_widths(x, peaks, rel_height=0.5)
 
@@ -149,7 +146,7 @@ def peak_finder(df,thresh):
 
     fig = plt.figure(figsize=(10,7))
     ax1 = fig.add_subplot(1, 1, 1) 
-    ax1.plot(t,x)#, label="Stokes I (ATCA 5)")
+    ax1.plot(t,x)
     ax1.plot(t[peaks], x[peaks]*1.0, marker="x", markersize=15, linestyle='',label = 'Peak',alpha=0.4)
     ax1.errorbar(t[peaks], x[peaks], yerr=x_err[peaks], fmt='none', ecolor='gray', capsize=4,alpha=0.4)
     ax1.hlines(y = 0, xmin = tmin, xmax = tmax, linestyles=":", color='gray')
