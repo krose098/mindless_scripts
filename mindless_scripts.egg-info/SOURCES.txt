@@ -10,6 +10,7 @@ mindless_scripts/astro_tools/flume.py
 mindless_scripts/astro_tools/process_time_series.py
 mindless_scripts/astro_tools/pulse_timing.py
 mindless_scripts/astro_tools/separation.py
+mindless_scripts/astro_tools/time_turner.py
 mindless_scripts/astro_tools/unicoord.py
 mindless_scripts/reduction_tools/flag.py
 mindless_scripts/writing_tools/atel_table.py

@@ -7,3 +7,4 @@ ms-ptsd = mindless_scripts.astro_tools.process_time_series:main
 ms-pu-time = mindless_scripts.astro_tools.pulse_timing:main
 ms-sep = mindless_scripts.astro_tools.separation:main
 ms-tb = mindless_scripts.astro_tools.bright_temp:main
+ms-time-mjd = mindless_scripts.astro_tools.time_turner:main
