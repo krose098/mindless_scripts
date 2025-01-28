@@ -3,7 +3,7 @@
 #TODO: Add a function to generalise for all coordinate inputs
 #TODO: Add saveplot option (set to default True)
 #TODO: Add relevant structure to make it a click script
-#TODO: Add twin axis for AEDT time
+#TODO: Add twin axis for AEDT time (WIP)
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -70,15 +70,20 @@ def astro_planner(name,ra,dec,date,time,horizon):
 
     observe_time = observe_time + np.linspace(-7, 8, 70)*u.hour
     ### Plotting ###
-    standard_style = {'linestyle': '-', 'marker': None, 'alpha': 0.5, 'linewidth': 2}
-    plot_altitude(target, observer, observe_time, airmass_yaxis=False,min_altitude=horizon,style_kwargs=standard_style)
+    fig = plt.figure(figsize=(10, 10))
+    ax = fig.add_subplot(2, 1, 1)
+    standard_style = {'linestyle': '-', 'marker': None, 'alpha': 0.75, 'linewidth': 2}
+    plot_altitude(target, observer, observe_time, ax=ax, airmass_yaxis=False,min_altitude=horizon,style_kwargs=standard_style,style_sheet=dark_style_sheet)
     # plot_altitude(phase_cal, observer, observe_time, airmass_yaxis=False,min_altitude=horizon)
     # plot_altitude(phase_cal2, observer, observe_time, airmass_yaxis=False,min_altitude=horizon)
-    plot_altitude(calibrator, observer, observe_time, airmass_yaxis=False,min_altitude=horizon,style_kwargs=standard_style)
-    plot_altitude(calibrator2, observer, observe_time, airmass_yaxis=False,min_altitude=horizon,style_kwargs=standard_style)
-
-    plt.legend()
-    plt.tight_layout()
+    plot_altitude(calibrator, observer, observe_time, ax=ax, airmass_yaxis=False,min_altitude=horizon,style_kwargs=standard_style)
+    plot_altitude(calibrator2, observer, observe_time, ax=ax, airmass_yaxis=False,min_altitude=horizon,style_kwargs=standard_style)
+    
+    # observe_time_aedt = observe_time + 11*u.hour+ np.linspace(-7, 8, 70)*u.hour
+    # ax2 = ax.twiny()
+    # ax2.plot(observe_time_aedt, np.ones_like(observe_time_aedt), ' ')
+    ax.legend()
+    fig.tight_layout()
     plt.show()
     return
 
