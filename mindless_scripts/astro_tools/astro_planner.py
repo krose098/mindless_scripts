@@ -1,11 +1,13 @@
 
 #TODO: Add twin axis for AEDT time (WIP)
+#TODO: fix help string to include recent changes for generalised input
 
-import click
 import matplotlib.pyplot as plt
 import numpy as np
 import astropy.units as u
 import warnings
+import click
+
 from mindless_scripts.astro_tools.unicoord import unicoord
 from astropy.coordinates import EarthLocation, SkyCoord
 from pytz import timezone
@@ -41,14 +43,7 @@ def astro_planner(name,coords,date,time,horizon,plot=True):
     target_coordinates = coords #SkyCoord(ra,dec, frame='icrs')
     target = FixedTarget(name=name, coord=target_coordinates)
 
-    # phase_cal_coordinates = SkyCoord('16h36m55.375s', '-41d02m00.518s', frame='icrs')
-    # phase_cal = FixedTarget(name='J1636-4101', coord=phase_cal_coordinates)
-    # phase_cal2_coordinates = SkyCoord('17h17m38.597s', '-39d48m52.586s', frame='icrs')
-    # phase_cal2 = FixedTarget(name='J1714-397', coord=phase_cal2_coordinates)
-
-
-    ### Visibility Time Calculations ###
-    # observe_time = Time('2023-02-01 12:00:00')
+    ### Observability Time Calculations ###
     datetime=date+" "+time
     observe_time = Time(datetime)
 
@@ -72,8 +67,6 @@ def astro_planner(name,coords,date,time,horizon,plot=True):
     ax = fig.add_subplot(2, 1, 1)
     standard_style = {'linestyle': '-', 'marker': None, 'alpha': 0.75, 'linewidth': 2}
     plot_altitude(target, observer, observe_time, ax=ax, airmass_yaxis=False,min_altitude=horizon,style_kwargs=standard_style,style_sheet=dark_style_sheet)
-    # plot_altitude(phase_cal, observer, observe_time, airmass_yaxis=False,min_altitude=horizon)
-    # plot_altitude(phase_cal2, observer, observe_time, airmass_yaxis=False,min_altitude=horizon)
     plot_altitude(calibrator, observer, observe_time, ax=ax, airmass_yaxis=False,min_altitude=horizon,style_kwargs=standard_style)
     plot_altitude(calibrator2, observer, observe_time, ax=ax, airmass_yaxis=False,min_altitude=horizon,style_kwargs=standard_style)
     
@@ -103,7 +96,3 @@ def main(name,coords,date,time,horizon,plot,galactic):
 
 if __name__ == "__main__":
 	main()
-     
-#Original example usage: astro_planner('J1745','17h45m08.90s', '-50d51m49.9s','2024-12-22','23:00:00',horizon=15)
-
-#New example usage: 'SN 2024abfo' '03h57m25.622s -46d11m07.67s' '2025-03-03' '05:00:00' 12.5
