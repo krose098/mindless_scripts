@@ -6,6 +6,18 @@ resolution-markers = [
 ]
 
 [[package]]
+name = "astroplan"
+version = "0.10.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "astropy" },
+    { name = "numpy" },
+    { name = "pytz" },
+    { name = "six" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/48/80/1be3af06717245a51adaf6994b682b3ee25ace9bfe5d443d440209d627df/astroplan-0.10.1.tar.gz", hash = "sha256:39d97c3377e1630abff3a94d8c956980f77a3e809e27a0376dd7d30abe3b6959", size = 140603 }
+
+[[package]]
 name = "astropy"
 version = "7.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -278,6 +290,7 @@ name = "mindless-scripts"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "astroplan" },
     { name = "astropy" },
     { name = "click" },
     { name = "matplotlib" },
@@ -287,6 +300,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+    { name = "astroplan", specifier = ">=0.10.1" },
     { name = "astropy", specifier = ">=7.0.0" },
     { name = "click", specifier = ">=8.1.8" },
     { name = "matplotlib", specifier = ">=3.10.0" },

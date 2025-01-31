@@ -1,13 +1,12 @@
 
-
-#TODO: Add a function to generalise for all coordinate inputs
-#TODO: Add saveplot option (set to default True)
-#TODO: Add relevant structure to make it a click script
 #TODO: Add twin axis for AEDT time (WIP)
 
+import click
 import matplotlib.pyplot as plt
 import numpy as np
 import astropy.units as u
+import warnings
+from mindless_scripts.astro_tools.unicoord import unicoord
 from astropy.coordinates import EarthLocation, SkyCoord
 from pytz import timezone
 from astropy.time import Time, TimezoneInfo
@@ -15,10 +14,9 @@ from astropy.time import Time, TimezoneInfo
 from astroplan import Observer
 from astroplan import FixedTarget
 from astroplan.plots import plot_altitude
+from astroplan.plots import dark_style_sheet
 
-import warnings
-
-def astro_planner(name,ra,dec,date,time,horizon):
+def astro_planner(name,coords,date,time,horizon,plot=True):
     ''' Takes in five parameters as strings: The source name, right ascension in the format of XXhYYmZZs, 
     declination in the format of XXdYYmZZs, observation date in the format YYYY-MM-DD, 
     and the 24-hour time in the format HH:MM:SS'''
@@ -40,7 +38,7 @@ def astro_planner(name,ra,dec,date,time,horizon):
     calibrator = FixedTarget(name='1934-638', coord=calibrator_coordinates)
     calibrator_coordinates2 = SkyCoord('08h25m26.869s', '-50d10m38.49s', frame='icrs')
     calibrator2 = FixedTarget(name='0823-500', coord=calibrator_coordinates2)
-    target_coordinates = SkyCoord(ra,dec, frame='icrs')
+    target_coordinates = coords #SkyCoord(ra,dec, frame='icrs')
     target = FixedTarget(name=name, coord=target_coordinates)
 
     # phase_cal_coordinates = SkyCoord('16h36m55.375s', '-41d02m00.518s', frame='icrs')
@@ -84,8 +82,28 @@ def astro_planner(name,ra,dec,date,time,horizon):
     # ax2.plot(observe_time_aedt, np.ones_like(observe_time_aedt), ' ')
     ax.legend()
     fig.tight_layout()
-    plt.show()
+    if plot:
+        fig.savefig('obs_plan_{}_{}.pdf'.format(name,datetime),dpi=300)
+        plt.show()
     return
 
 
-#example usage: astro_planner('J1745','17h45m08.90s', '-50d51m49.9s','2024-12-22','23:00:00',horizon=15)
+@click.command()
+@click.option("-p","--plot", is_flag=True, show_default=True,default=False, help="If set, save and display the plot")
+@click.option("-g","--galactic", is_flag=True, show_default=True,default=False, help="If set, assumes galactic coordinates")
+@click.argument("name", nargs=1, type=str)
+@click.argument("coords", nargs=1, type=str)
+@click.argument("date", nargs=1, type=str)
+@click.argument("time", nargs=1, type=str)
+@click.argument("horizon", nargs=1, type=float, default=15)
+def main(name,coords,date,time,horizon,plot,galactic):
+    pos_eq, __ = unicoord(coords,galactic,display=False)
+    astro_planner(name,pos_eq,date,time,horizon,plot)
+    return
+
+if __name__ == "__main__":
+	main()
+     
+#Original example usage: astro_planner('J1745','17h45m08.90s', '-50d51m49.9s','2024-12-22','23:00:00',horizon=15)
+
+#New example usage: 'SN 2024abfo' '03h57m25.622s -46d11m07.67s' '2025-03-03' '05:00:00' 12.5
