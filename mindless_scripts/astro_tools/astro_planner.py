@@ -1,37 +1,13 @@
-
-<<<<<<< HEAD
-#TODO: Add twin axis for AEDT time (WIP)
-#TODO: fix help string to include recent changes for generalised input
-=======
-<<<<<<< HEAD
-
-#TODO: Add a function to generalise for all coordinate inputs
-#TODO: Add saveplot option (set to default True)
-#TODO: Add relevant structure to make it a click script
-#TODO: Add twin axis for AEDT time
->>>>>>> dbe1189 (remove unnecessary comments from astro_planner)
-
-import matplotlib.pyplot as plt
-import numpy as np
-import astropy.units as u
-<<<<<<< HEAD
-=======
-=======
 #TODO: Add twin axis for AEDT time (WIP)
 #TODO: fix help string to include recent changes for generalised input
 
 import matplotlib.pyplot as plt
 import numpy as np
 import astropy.units as u
->>>>>>> dbe1189 (remove unnecessary comments from astro_planner)
 import warnings
 import click
 
 from mindless_scripts.astro_tools.unicoord import unicoord
-<<<<<<< HEAD
-=======
->>>>>>> db685dd (remove unnecessary comments from astro_planner)
->>>>>>> dbe1189 (remove unnecessary comments from astro_planner)
 from astropy.coordinates import EarthLocation, SkyCoord
 from pytz import timezone
 from astropy.time import Time, TimezoneInfo
@@ -86,7 +62,6 @@ def astro_planner(name,coords,date,time,horizon,plot=True):
 
     observe_time = observe_time + np.linspace(-7, 8, 70)*u.hour
     ### Plotting ###
-<<<<<<< HEAD
     fig = plt.figure(figsize=(10, 10))
     ax = fig.add_subplot(2, 1, 1)
     standard_style = {'linestyle': '-', 'marker': None, 'alpha': 0.75, 'linewidth': 2}
@@ -104,43 +79,6 @@ def astro_planner(name,coords,date,time,horizon,plot=True):
         plt.show()
     return
 
-
-=======
-<<<<<<< HEAD
-    standard_style = {'linestyle': '-', 'marker': None, 'alpha': 0.5, 'linewidth': 2}
-    plot_altitude(target, observer, observe_time, airmass_yaxis=False,min_altitude=horizon,style_kwargs=standard_style)
-    # plot_altitude(phase_cal, observer, observe_time, airmass_yaxis=False,min_altitude=horizon)
-    # plot_altitude(phase_cal2, observer, observe_time, airmass_yaxis=False,min_altitude=horizon)
-    plot_altitude(calibrator, observer, observe_time, airmass_yaxis=False,min_altitude=horizon,style_kwargs=standard_style)
-    plot_altitude(calibrator2, observer, observe_time, airmass_yaxis=False,min_altitude=horizon,style_kwargs=standard_style)
-
-    plt.legend()
-    plt.tight_layout()
-    plt.show()
-    return
-
-
-#example usage: astro_planner('J1745','17h45m08.90s', '-50d51m49.9s','2024-12-22','23:00:00',horizon=15)
-=======
-    fig = plt.figure(figsize=(10, 10))
-    ax = fig.add_subplot(2, 1, 1)
-    standard_style = {'linestyle': '-', 'marker': None, 'alpha': 0.75, 'linewidth': 2}
-    plot_altitude(target, observer, observe_time, ax=ax, airmass_yaxis=False,min_altitude=horizon,style_kwargs=standard_style,style_sheet=dark_style_sheet)
-    plot_altitude(calibrator, observer, observe_time, ax=ax, airmass_yaxis=False,min_altitude=horizon,style_kwargs=standard_style)
-    plot_altitude(calibrator2, observer, observe_time, ax=ax, airmass_yaxis=False,min_altitude=horizon,style_kwargs=standard_style)
-    
-    # observe_time_aedt = observe_time + 11*u.hour+ np.linspace(-7, 8, 70)*u.hour
-    # ax2 = ax.twiny()
-    # ax2.plot(observe_time_aedt, np.ones_like(observe_time_aedt), ' ')
-    ax.legend()
-    fig.tight_layout()
-    if plot:
-        fig.savefig('obs_plan_{}_{}.pdf'.format(name,datetime),dpi=300)
-        plt.show()
-    return
-
-
->>>>>>> dbe1189 (remove unnecessary comments from astro_planner)
 @click.command()
 @click.option("-p","--plot", is_flag=True, show_default=True,default=False, help="If set, save and display the plot")
 @click.option("-g","--galactic", is_flag=True, show_default=True,default=False, help="If set, assumes galactic coordinates")
@@ -155,9 +93,4 @@ def main(name,coords,date,time,horizon,plot,galactic):
     return
 
 if __name__ == "__main__":
-<<<<<<< HEAD
 	main()
-=======
-	main()
->>>>>>> db685dd (remove unnecessary comments from astro_planner)
->>>>>>> dbe1189 (remove unnecessary comments from astro_planner)
