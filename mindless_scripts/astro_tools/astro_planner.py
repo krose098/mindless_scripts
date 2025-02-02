@@ -1,5 +1,4 @@
 #TODO: Add twin axis for AEDT time (WIP)
-#TODO: fix help string to include recent changes for generalised input
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -17,10 +16,20 @@ from astroplan import FixedTarget
 from astroplan.plots import plot_altitude
 from astroplan.plots import dark_style_sheet
 
-def astro_planner(name,coords,date,time,horizon,plot=True):
-    ''' Takes in five parameters as strings: The source name, right ascension in the format of XXhYYmZZs, 
-    declination in the format of XXdYYmZZs, observation date in the format YYYY-MM-DD, 
-    and the 24-hour time in the format HH:MM:SS'''
+def astro_planner(name,coords,datetime,horizon,plot=True):
+    """
+    Check and plot observability of a source on a given date.
+
+    Parameters:
+    name (string): Source name for print and plot
+    coords (string): Source coordinates as SkyCoord object
+    datetime (string): Observation date and time in the format YYYY-MM-DD HH:MM:SS
+    horizon (float): Horizon observing limit in degrees
+    plot (bool): Optional flag for whether to show and save the plot
+    
+    Returns:
+    prints the rise and set time of the source in UTC and AEDT. 
+    """
 
     warnings.filterwarnings("ignore", category=UserWarning)
 
@@ -39,13 +48,10 @@ def astro_planner(name,coords,date,time,horizon,plot=True):
     calibrator = FixedTarget(name='1934-638', coord=calibrator_coordinates)
     calibrator_coordinates2 = SkyCoord('08h25m26.869s', '-50d10m38.49s', frame='icrs')
     calibrator2 = FixedTarget(name='0823-500', coord=calibrator_coordinates2)
-    target_coordinates = coords #SkyCoord(ra,dec, frame='icrs')
-    target = FixedTarget(name=name, coord=target_coordinates)
+    target = FixedTarget(name=name, coord=coords)
 
     ### Observability Time Calculations ###
-    datetime=date+" "+time
     observe_time = Time(datetime)
-
     source_rise=observer.target_rise_time(observe_time,target,horizon=horizon*u.deg)
     source_set=observer.target_set_time(observe_time,target,horizon=horizon*u.deg)
     utc_plus_eleven_hours = TimezoneInfo(utc_offset=11*u.hour)
@@ -53,7 +59,7 @@ def astro_planner(name,coords,date,time,horizon,plot=True):
     source_set_aedt=str(source_set.to_datetime(timezone=utc_plus_eleven_hours)).split('+')[0]
 
     ### Visibility Printout ###
-    print('The target is above the horizon for {:.1f} hours\n'.format(24*(source_set-source_rise).value))
+    print('{} is above the horizon for {:.1f} hours\n'.format(name,24*(source_set-source_rise).value))
     print('|  TZ\t|\tRise \t\t  |\t\tSet\t\t|') 
     print(65*"=")
     print('| UTC \t| {} | {}\t|'.format(source_rise.iso,source_set.iso)) 
@@ -84,12 +90,11 @@ def astro_planner(name,coords,date,time,horizon,plot=True):
 @click.option("-g","--galactic", is_flag=True, show_default=True,default=False, help="If set, assumes galactic coordinates")
 @click.argument("name", nargs=1, type=str)
 @click.argument("coords", nargs=1, type=str)
-@click.argument("date", nargs=1, type=str)
-@click.argument("time", nargs=1, type=str)
+@click.argument("datetime", nargs=1, type=str)
 @click.argument("horizon", nargs=1, type=float, default=15)
-def main(name,coords,date,time,horizon,plot,galactic):
+def main(name,coords,datetime,horizon,plot,galactic):
     pos_eq, __ = unicoord(coords,galactic,display=False)
-    astro_planner(name,pos_eq,date,time,horizon,plot)
+    astro_planner(name,pos_eq,datetime,horizon,plot)
     return
 
 if __name__ == "__main__":
