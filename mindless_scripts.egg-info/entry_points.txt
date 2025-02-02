@@ -3,6 +3,7 @@ ms-atel = mindless_scripts.writing_tools.atel_table:main
 ms-coord = mindless_scripts.astro_tools.unicoord:main
 ms-flag = mindless_scripts.reduction_tools.flag:main
 ms-flume = mindless_scripts.astro_tools.flume:main
+ms-obs-plan = mindless_scripts.astro_tools.astro_planner:main
 ms-ptsd = mindless_scripts.astro_tools.process_time_series:main
 ms-pu-time = mindless_scripts.astro_tools.pulse_timing:main
 ms-sep = mindless_scripts.astro_tools.separation:main

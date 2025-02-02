@@ -3,6 +3,17 @@ from astropy.coordinates import SkyCoord
 import click
 
 def unicoord(coords,galactic,display):
+	"""
+	Universal coordinate converter for equatorial and galactic coordinates.
+
+	Parameters:	
+	coords (string): Source coordinates in any standard format
+	galactic (bool): If set, assumes galactic coordinates
+	display (bool): If set, display all coordinates
+	
+	Returns:
+	ICRS and Galactic coordinates as SkyCoord objects
+	"""
 	ra,dec = coords.split(" ")
 	raunit = "hourangle" if ":" in ra or "h" in ra else "deg"
 	if galactic is False:
@@ -11,7 +22,7 @@ def unicoord(coords,galactic,display):
 	else:
 		pos_gal = SkyCoord(l=ra, b=dec, unit=("deg", "deg"),frame='galactic')
 		pos_eq = pos_gal.transform_to('icrs')
-	if display == True:
+	if display is True:
 		print(29*"=","\nEquatorial Coordinates:")
 		print(pos_eq.to_string(style="decimal", precision=6))
 		print(pos_eq.to_string(style="hmsdms", precision=3))
@@ -27,7 +38,6 @@ def unicoord(coords,galactic,display):
 def main(coords,galactic,display):
 	unicoord(coords,galactic,display)
 	return
-
 if __name__ == "__main__":
 	main()
 

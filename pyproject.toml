@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "astroplan>=0.10.1",
     "astropy>=7.0.0",
     "click>=8.1.8",
     "matplotlib>=3.10.0",
@@ -26,3 +27,4 @@ ms-tb = "mindless_scripts.astro_tools.bright_temp:main"
 ms-pu-time = "mindless_scripts.astro_tools.pulse_timing:main"
 ms-ptsd = "mindless_scripts.astro_tools.process_time_series:main"
 ms-time-mjd = "mindless_scripts.astro_tools.time_turner:main"
+ms-obs-plan = "mindless_scripts.astro_tools.astro_planner:main"

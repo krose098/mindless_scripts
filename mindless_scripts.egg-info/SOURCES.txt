@@ -5,6 +5,7 @@ mindless_scripts.egg-info/dependency_links.txt
 mindless_scripts.egg-info/entry_points.txt
 mindless_scripts.egg-info/requires.txt
 mindless_scripts.egg-info/top_level.txt
+mindless_scripts/astro_tools/astro_planner.py
 mindless_scripts/astro_tools/bright_temp.py
 mindless_scripts/astro_tools/flume.py
 mindless_scripts/astro_tools/process_time_series.py
