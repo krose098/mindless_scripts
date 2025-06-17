@@ -2,6 +2,7 @@
 from pathlib import Path
 import pandas as pd
 from datetime import datetime, timedelta
+from mindless_scripts.astro_tools.unicoord import unicoord
 import click
  
 
@@ -28,18 +29,32 @@ def mjd_to_date(mjd_list):
 
 
 @click.command()
+# @click.option('-lm"--long", is_flag=True, help="Extended output")
 @click.argument("csv", type=Path)
 def main(csv):
     
     df = pd.read_csv(str(csv))
     flux = df['flux_peak']
-    err = df['flux_peak_err']
+    err = df['flux_err_quad']
     dates = df['obs_start']
     freqs = df['freq']
+    dur = df['obs_length']/60.0
+    ra = df['ra_deg_cont']
+    dec = df['dec_deg_cont']
+    
     formatted_dates = mjd_to_date(dates)
     for idx,date in enumerate(formatted_dates):
-        print("{}: {:.1f} +/- {:.1f} mJy/beam {:.0f} MHz".format(date, flux[idx], err[idx], round(freqs[idx])))
-    return
+        print("{}: {:.2f} +/- {:.2f} mJy/beam {:.0f} MHz {:.0f} min".format(date, flux[idx], err[idx], round(freqs[idx]), round(dur[idx])))
+    for idx,date in enumerate(formatted_dates):
+         coords = "{} {}".format(ra[idx], dec[idx])
+         pos_eq, pos_gal = unicoord(coords, galactic=False,display=False)
+         print("(R.A., Dec) = ({} deg) = = ({})".format(pos_eq.to_string(style="decimal", precision=4), pos_eq.to_string(style="hmsdms", precision=1)))
+    
+    # print("Mean position (R.A., Dec) = ({})".format(pos_eq.to_string(style="decimal", precision=4)))
+    # if l == True:
+    #     # Print the full DataFrame
+    #     print(df.to_string(index=False))
+    # return
 
 if __name__ == "__main__":
 	main()
