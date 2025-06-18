@@ -28,4 +28,4 @@ Use at your own risk. Most of this is probably too specific to my workflow to be
 
 ---
 
-*"Anything worth doing is worth doing poorly--until you can learn to do it well." - Zig Ziglar*
+*"given choice between complexity or one on one against t-rex, grug take t-rex: at least grug see t-rex" - [Grug](https://grugbrain.dev/)*
