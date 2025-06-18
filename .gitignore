@@ -41,5 +41,5 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
-.pyc
-.cpython-311.pyc
+mindless_scripts/**/*.pyc
+

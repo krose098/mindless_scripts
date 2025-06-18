@@ -14,7 +14,7 @@ from astropy.time import Time, TimezoneInfo
 from astroplan import Observer
 from astroplan import FixedTarget
 from astroplan.plots import plot_altitude
-from astroplan.plots import dark_style_sheet
+# from astroplan.plots import dark_style_sheet
 
 def astro_planner(name,coords,datetime,horizon,plot=True):
     """
@@ -26,7 +26,7 @@ def astro_planner(name,coords,datetime,horizon,plot=True):
     datetime (string): Observation date and time in the format YYYY-MM-DD HH:MM:SS
     horizon (float): Horizon observing limit in degrees
     plot (bool): Optional flag for whether to show and save the plot
-    
+
     Returns:
     prints the rise and set time of the source in UTC and AEDT. 
     """
@@ -71,7 +71,7 @@ def astro_planner(name,coords,datetime,horizon,plot=True):
     fig = plt.figure(figsize=(10, 10))
     ax = fig.add_subplot(2, 1, 1)
     standard_style = {'linestyle': '-', 'marker': None, 'alpha': 0.75, 'linewidth': 2}
-    plot_altitude(target, observer, observe_time, ax=ax, airmass_yaxis=False,min_altitude=horizon,style_kwargs=standard_style,style_sheet=dark_style_sheet)
+    plot_altitude(target, observer, observe_time, ax=ax, airmass_yaxis=False,min_altitude=horizon,style_kwargs=standard_style)#,style_sheet=dark_style_sheet)
     plot_altitude(calibrator, observer, observe_time, ax=ax, airmass_yaxis=False,min_altitude=horizon,style_kwargs=standard_style)
     plot_altitude(calibrator2, observer, observe_time, ax=ax, airmass_yaxis=False,min_altitude=horizon,style_kwargs=standard_style)
     
