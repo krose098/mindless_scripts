@@ -4,7 +4,6 @@ import pandas as pd
 from datetime import datetime, timedelta
 from mindless_scripts.astro_tools.unicoord import unicoord
 import click
- 
 
 def mjd_to_date(mjd_list):
     formatted_dates = []
@@ -48,9 +47,9 @@ def main(csv):
     for idx,date in enumerate(formatted_dates):
          coords = "{} {}".format(ra[idx], dec[idx])
          pos_eq, pos_gal = unicoord(coords, galactic=False,display=False)
-         print("(R.A., Dec) = ({} deg) = = ({})".format(pos_eq.to_string(style="decimal", precision=4), pos_eq.to_string(style="hmsdms", precision=1)))
+         print("(RA, Dec) = ({} deg) =  ({})".format(pos_eq.to_string(style="decimal", precision=4), pos_eq.to_string(style="hmsdms", precision=1)))
     
-    # print("Mean position (R.A., Dec) = ({})".format(pos_eq.to_string(style="decimal", precision=4)))
+    # print("Mean position (RA, Dec) = ({})".format(pos_eq.to_string(style="decimal", precision=4)))
     # if l == True:
     #     # Print the full DataFrame
     #     print(df.to_string(index=False))
