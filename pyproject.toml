@@ -11,6 +11,7 @@ dependencies = [
     "matplotlib>=3.10.0",
     "pandas>=2.2.3",
     "scipy>=1.15.1",
+    "astroquery>=0.4.6",
 ]
 
 [tool.uv]
@@ -29,3 +30,4 @@ ms-ptsd = "mindless_scripts.astro_tools.process_time_series:main"
 ms-time-mjd = "mindless_scripts.astro_tools.time_turner:main"
 ms-obs-plan = "mindless_scripts.astro_tools.astro_planner:main"
 ms-props = "mindless_scripts.astro_tools.prop_motion:main"
+ms-cone = "mindless_scripts.astro_tools.cone_search:main"
