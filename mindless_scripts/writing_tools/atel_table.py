@@ -49,7 +49,7 @@ def main(csv):
          pos_eq, pos_gal = unicoord(coords, galactic=False,display=False)
          print("(RA, Dec) = ({} deg) =  ({})".format(pos_eq.to_string(style="decimal", precision=4), pos_eq.to_string(style="hmsdms", precision=1)))
     
-    # print("Mean position (RA, Dec) = ({})".format(pos_eq.to_string(style="decimal", precision=4)))
+    print("Mean position (RA, Dec) = ({})".format(pos_eq.to_string(style="decimal", precision=4)))
     # if l == True:
     #     # Print the full DataFrame
     #     print(df.to_string(index=False))
