@@ -4,11 +4,11 @@ A collection of miscellaneous tools and scripts that I use to make my life easie
 
 ## What's in here?
 
-This repo is basically my digital toolbox - a bunch of scripts I've written over time to automate annoying tasks, process data, or just make things work the way I want them to. Most of these started as quick one-offs that turned out to be useful enough to keep around.
+This repo is basically my digital toolbox - a bunch of scripts I've written over time to automate annoying tasks, process data, or just make things work the way I want them to. Most of these started as quick one-offs that turned out to be useful enough to keep around. These scripts are all designed to streamline various research-specific tasks relevant to my work in radio astronomy.
 
 ## Setup
 
-This repo is set up as a uv project, so it's fairly self-contained in terms of relevant packages and dependencies. Just run `uv sync` to get everything you need.
+This repo is set up as a `uv` project, so it's fairly self-contained in terms of relevant packages and dependencies. Just run `uv sync` to get everything you need.
 
 ## Usage
 
